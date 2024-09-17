@@ -39,7 +39,7 @@ public class Calculadora {
                         break;
                     case 6:
                         continuar = false;
-                        System.out.println("Sair");
+                        System.out.println("Até mais!");
                         continue;
                     default:
                         System.out.println("Escolha inválida. Tente novamente.");
