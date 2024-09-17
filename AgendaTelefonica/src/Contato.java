@@ -9,9 +9,9 @@ public class Contato {
         this.telefone = telefone;
     }
 
-    // @Override
-    // public String toString() {
-    //     return "Nome: " + nome + ", Telefone: " + telefone;
-    // }
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", Telefone: " + telefone;
+    }
 
 }
