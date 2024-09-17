@@ -8,8 +8,9 @@ public class Gerenciamento {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
+        boolean rodando = true;
 
-        while (opcao != 5) {
+        while (rodando) {
             System.out.println("1. Adicionar Funcionário");
             System.out.println("2. Remover Funcionário");
             System.out.println("3. Listar Funcionários");
@@ -34,6 +35,7 @@ public class Gerenciamento {
                     break;
                 case 5:
                     System.out.println("Sair");
+                    rodando = false;
                     break;
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
