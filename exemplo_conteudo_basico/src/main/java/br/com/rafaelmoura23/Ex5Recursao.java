@@ -10,7 +10,7 @@ public class Ex5Recursao {
         if (n == 0 || n == 1) {
             return 1;
         } else {
-            return calculoFatorial(n - 1);
+            return n * calculoFatorial(n - 1);
         }
     }
 
@@ -18,6 +18,8 @@ public class Ex5Recursao {
         System.out.print("Digite um número:");
         numero = sc.nextInt();
 
+       
+            
         if(numero < 0) {
             throw new Exception("O número deve ser Positivo.");
         }
