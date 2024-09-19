@@ -16,11 +16,11 @@ public class Calculadora {
                 System.out.println("5. Raiz Quadrada");
                 System.out.println("6. Sair");
                 System.out.print("Escolha uma opção: ");
-                
+
                 int escolha = scanner.nextInt();
                 Operacao operacao = null;
                 double resultado = 0;
-                
+
                 switch (escolha) {
                     case 1:
                         operacao = new Soma();
@@ -59,7 +59,7 @@ public class Calculadora {
 
                 try {
                     if (escolha == 5) {
-                        resultado = operacao.calcular(num1, 0); 
+                        resultado = operacao.calcular(num1, 0);
                     } else {
                         resultado = operacao.calcular(num1, num2);
                     }
@@ -70,7 +70,7 @@ public class Calculadora {
 
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, insira um número.");
-                scanner.next(); 
+                scanner.next();
             }
         }
 
