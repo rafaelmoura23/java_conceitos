@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Gerenciamento {
     // array para adicionar os funcionarios
     private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
@@ -10,15 +12,16 @@ public class Gerenciamento {
         int opcao = 0;
         boolean rodando = true;
 
+
         while (rodando) {
+            
             System.out.println("1. Adicionar Funcionário");
             System.out.println("2. Remover Funcionário");
             System.out.println("3. Listar Funcionários");
             System.out.println("4. Calcular Média Salarial");
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+            opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma Opção: ", opcao));
 
             switch (opcao) {
                 case 1:
@@ -47,20 +50,14 @@ public class Gerenciamento {
 
     // Adicionar o funcionario ao array
     private static void adicionarFuncionario() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite o nome do funcionário: ");
-        String nome = scanner.nextLine();
-        System.out.print("Digite a idade do funcionário: ");
-        int idade = scanner.nextInt();
-        System.out.print("Digite o salário do funcionário: ");
-        double salario = scanner.nextDouble();
-        scanner.nextLine();
+        String nome = JOptionPane.showInputDialog("Informe o nome do Funcionário: ");
+        int idade = Integer.parseInt(JOptionPane.showInputDialog("Informe a idade do Funcionário: "));
+        Double salario = (double) Integer.parseInt(JOptionPane.showInputDialog("Informe o salário do Funcionário: "));
 
         // Cria um nobvo objeto e insere no array
         Funcionario funcionario = new Funcionario(nome, idade, salario);
         funcionarios.add(funcionario);
         System.out.println("Funcionário adicionado com sucesso!");
-        scanner.close();
     }
 
     // Remover o funcionario através do nome
