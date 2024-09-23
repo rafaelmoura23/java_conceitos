@@ -1,36 +1,48 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 public class Curso {
-    private static ArrayList<Aluno> alunos = new ArrayList<>();
-    private static ArrayList<Professor> professores = new ArrayList<>();
+    private String nomeCurso;
+    private List<Aluno> alunos;
+    private Professor professor;
 
-    public void addAlunos(Aluno aluno) {
+    public Curso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
+        alunos = new ArrayList<>();
+    }
+
+    // Adicionar Professor no Curso
+    public void addProf(Professor professor) {
+        this.professor = professor;
+    }
+
+    // Adicionar Alunos
+    public void addAluno(Aluno aluno) {
         alunos.add(aluno);
-        System.out.println("Aluno adicionado com sucesso!");
-        aluno.exibirInfo();
     }
 
-    public void addProfessor(Professor professor) {
-        professores.add(professor);
-        System.out.println("Professor adicionado com sucesso!");
-    }
-
-    public String mediaAluno() {
-        double media = 0;
-        if (alunos.isEmpty()) {
-            return "Notas vazias!";
-        } else {
-            for (Aluno aluno : alunos) {
-
-                media += aluno.getNota();
-
+    // Lançar Notas
+    public void lancarNotas(String nomeAluno, double notaAluno) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getNome().equalsIgnoreCase(nomeAluno)) {
+                aluno.setNota(notaAluno);
+                System.out.println("Nota inserida com Sucesso!");
+                return;
             }
-            double mediaGeral = media / alunos.size();
-            return "Media Geral: " + mediaGeral;
+        }
+        System.out.println("Aluno não encontrado!");
+    }
+
+    // Exibir notas de todos os alunos
+
+    public void resultadoFinal() {
+        for (Aluno aluno : alunos) {
+            System.out.println(aluno.exibirInfo());
+            aluno.avaliarDesempenho();
         }
     }
 
@@ -40,7 +52,7 @@ public class Curso {
             try {
                 operacao = Integer.parseInt(JOptionPane.showInputDialog(
                         null,
-                        "\nGerenciamento de Funcionários\n 1- Adicionar Aluno \n 2- Adicionar Professor\n 3- Remover Funcionários\n 4-Calcular Média Salarial\n 5-Sair"));
+                        "\nGerenciamento de Funcionários\n 1- Adicionar Aluno \n 2- Adicionar Professor\n 3- Lançar Notas \n 4- Resultado Final\n 5-Sair"));
             } catch (Exception e) {
                 System.err.println(e);
                 operacao = 0;
@@ -50,20 +62,19 @@ public class Curso {
                     String nome = JOptionPane.showInputDialog("Digite o nome: ");
                     String cpf = JOptionPane.showInputDialog("Digite o cpf: ");
                     String matricula = JOptionPane.showInputDialog("Digite a matrícula");
-                    double nota = Double.parseDouble(JOptionPane.showInputDialog("Digite a nota: "));
-                    addAlunos(new Aluno());
+                    double nota = 0.0;
+                    addAluno(new Aluno(nome, cpf, matricula, nota));
                     break;
                 case 2: // professor
-                    // String nomep = JOptionPane.showInputDialog("Digite o nome: ");
-                    // String cpfp = JOptionPane.showInputDialog("Digite o cpf: ");
-                    // double salario = Double.parseDouble(JOptionPane.showInputDialog("Digite o salário"));
-                    // addProfessor(new Professor());
+                    addProf(professor);
                     break;
                 case 3:
-                    mediaAluno();
+                    String nomel = JOptionPane.showInputDialog("Digite o nome: ");
+                    double notal = Double.parseDouble(JOptionPane.showInputDialog("Digite a nota: "));
+                    lancarNotas(nomel, notal);
                     break;
                 case 4:
-
+                    resultadoFinal();
                     break;
                 case 5:
                     System.out.println("Saindo...");

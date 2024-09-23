@@ -13,7 +13,6 @@ public class Pessoa {
     private String nome;
     private String cpf;
 
-
     public String exibirInfo(){
         return "Nome: " + nome + "Cpf: " + cpf;
     }

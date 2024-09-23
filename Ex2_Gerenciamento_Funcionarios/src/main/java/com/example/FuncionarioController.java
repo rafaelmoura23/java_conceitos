@@ -14,6 +14,7 @@ public class FuncionarioController {
     public void addFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
         System.out.println("Funcionário adicionado com sucesso!");
+        
     }
 
     // Listar Funcionários
