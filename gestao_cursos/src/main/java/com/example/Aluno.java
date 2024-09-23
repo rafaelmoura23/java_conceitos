@@ -6,13 +6,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Aluno extends Pessoa {
-    private int matricula;
+    private String matricula;
     private double nota;
 
-    Pessoa pessoa = new Pessoa();
+    public Aluno(String nome, String cpf, String matricula, double nota) {
+        super(nome, cpf);
+        this.matricula = matricula;
+        this.nota = 0.0;
+    }
 
+    // Polimorfismo
     @Override
-    public String exibirInformacoes() {
-        return "nome: " + pessoa.getNome() + "cpf: " + pessoa.getCpf() + "salario: " + "matricula: " + matricula;
+    public String exibirInfo() {
+        return "nome: " + getNome() + "cpf: " + getCpf() + "matricula: " + matricula;
     }
 }

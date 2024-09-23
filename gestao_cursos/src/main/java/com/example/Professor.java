@@ -11,7 +11,7 @@ public class Professor extends Pessoa {
     Pessoa pessoa = new Pessoa();
 
     @Override
-    public String exibirInformacoes() {
+    public String exibirInfo() {
         return "nome: " + pessoa.getNome() + "cpf: " + pessoa.getCpf() + "salario: " + salario;
     }
 }

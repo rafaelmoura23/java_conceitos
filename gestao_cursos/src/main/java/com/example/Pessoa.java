@@ -14,7 +14,7 @@ public class Pessoa {
     private String cpf;
 
 
-    public String exibirInformacoes(){
+    public String exibirInfo(){
         return "Nome: " + nome + "Cpf: " + cpf;
     }
 }
