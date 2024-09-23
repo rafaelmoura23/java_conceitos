@@ -61,7 +61,7 @@ public class Curso {
                 case 1: // aluno
                     String nome = JOptionPane.showInputDialog("Digite o nome: ");
                     String cpf = JOptionPane.showInputDialog("Digite o cpf: ");
-                    String matricula = JOptionPane.showInputDialog("Digite a matrícula");
+                    String matricula = JOptionPane.showInputDialog("Digite a matrícula: ");
                     double nota = 0.0;
                     addAluno(new Aluno(nome, cpf, matricula, nota));
                     break;
