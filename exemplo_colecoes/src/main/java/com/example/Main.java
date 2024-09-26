@@ -20,14 +20,19 @@ public class Main {
         // list.removerNome("Maria");
         // list.listarNomes();
 
-        MapExemplo list = new MapExemplo();
-        list.addNomeIdade("Maria", 30);
-        list.addNomeIdade("Pedro", 10);
-        list.addNomeIdade("João", 25);
-        list.listarNomesIdades();
-        list.modificarValor("Maria", 7);
-        list.listarNomesIdades();
-        list.removerNomesIdades("Maria");
-        list.listarNomesIdades();
+        // MapExemplo list = new MapExemplo();
+        // list.addNomeIdade("Maria", 30);
+        // list.addNomeIdade("Pedro", 10);
+        // list.addNomeIdade("João", 25);
+        // list.listarNomesIdades();
+        // list.modificarValor("Maria", 7);
+        // list.listarNomesIdades();
+        // list.removerNomesIdades("Maria");
+        // list.listarNomesIdades();
+
+        ArraysasListExemplo arrayAsList = new ArraysasListExemplo();
+        arrayAsList.addArray("Rafa"); // erro OutOfBoundsException
+        arrayAsList.addNome("Rafa");
+        arrayAsList.listarNome();
     }
 }
