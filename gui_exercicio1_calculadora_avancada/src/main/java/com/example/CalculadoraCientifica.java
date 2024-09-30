@@ -11,57 +11,61 @@ public class CalculadoraCientifica extends JPanel {
     public CalculadoraCientifica() {
         setLayout(new BorderLayout());
 
-        // Criação do campo de resultado
+        // campo de resultado
         resultado = new JTextField();
         resultado.setEditable(false);
         add(resultado, BorderLayout.NORTH);
 
-        // Criação do painel de botões
+        // painel de botões
         JPanel botoesPanel = new JPanel(new FlowLayout());
         String[] botoes = { "x^y", "√x", "log(x)", "C" };
 
         for (String texto : botoes) {
             JButton botao = new JButton(texto);
-            botao.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    acaoBotao(e.getActionCommand());
-                }
-            });
+            botao.addActionListener(new BotaoClickListener());
             botoesPanel.add(botao);
         }
 
         add(botoesPanel, BorderLayout.CENTER);
     }
 
-    private void acaoBotao(String comando) {
-        if (comando.equals("C")) {
-            resultado.setText("");
-            return;
-        }
-        
-        try {
-            double numero = Double.parseDouble(resultado.getText());
-            double resultadoFinal = 0;
+    private class BotaoClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String comando = e.getActionCommand();
 
             switch (comando) {
+                case "C":
+                    resultado.setText("");
+                    break;
                 case "x^y":
-                    String input = JOptionPane.showInputDialog("Digite a potência:");
-                    if (input != null) {
-                        double potencia = Double.parseDouble(input);
-                        resultadoFinal = Math.pow(numero, potencia);
-                    }
+                    calcularPotencia();
                     break;
                 case "√x":
-                    resultadoFinal = Math.sqrt(numero);
+                    calcularRaiz();
                     break;
                 case "log(x)":
-                    resultadoFinal = Math.log(numero);
+                    calcularLogaritmo();
+                    break;
+                default:
                     break;
             }
-            resultado.setText(String.valueOf(resultadoFinal));
-        } catch (NumberFormatException ex) {
-            resultado.setText("Erro");
+        }
+
+
+        // metodo para calcular protencia
+        public void calcularPotencia() {
+           
+        }
+
+        // metodo para calcular raiz
+        public void calcularRaiz() {
+            
+        }
+
+        // metodo para calcular log
+        public void calcularLogaritmo() {
+            
         }
     }
 }
-

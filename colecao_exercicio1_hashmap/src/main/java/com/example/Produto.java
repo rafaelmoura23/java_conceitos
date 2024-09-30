@@ -10,7 +10,12 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Produto {
-    //atributos
+    // atributos
     private String nome;
     private double preco;
+
+    @Override
+    public String toString() {
+        return "Produto: " + nome + "c| Preço: " + preco;
+    }
 }

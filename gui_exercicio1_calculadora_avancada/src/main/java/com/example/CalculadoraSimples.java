@@ -7,77 +7,87 @@ import java.awt.event.ActionListener;
 
 public class CalculadoraSimples extends JPanel {
     private JTextField resultado;
-    private String operador = "";
-    private double operando1 = 0;
+    private String operador;
+    private double num1, num2;
 
     public CalculadoraSimples() {
         setLayout(new BorderLayout());
 
-        // Criação do campo de resultado
+        // campo de resultado
         resultado = new JTextField();
         resultado.setEditable(false);
         add(resultado, BorderLayout.NORTH);
 
-        // Criação do painel de botões
+        // painel de botões
         JPanel botoesPanel = new JPanel(new GridLayout(4, 4));
         String[] botoes = {
-            "7", "8", "9", "/",
-            "4", "5", "6", "*",
-            "1", "2", "3", "-",
-            "0", "C", "=", "+"
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "0", "C", "=", "+"
         };
 
         for (String texto : botoes) {
             JButton botao = new JButton(texto);
-            botao.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    acaoBotao(e.getActionCommand());
-                }
-            });
+            botao.addActionListener(new BotaoClickListener());
             botoesPanel.add(botao);
         }
 
         add(botoesPanel, BorderLayout.CENTER);
     }
 
-    private void acaoBotao(String comando) {
-        if (comando.charAt(0) >= '0' && comando.charAt(0) <= '9') {
-            resultado.setText(resultado.getText() + comando);
-        } else if (comando.equals("C")) {
-            resultado.setText("");
-            operando1 = 0;
-            operador = "";
-        } else if (comando.equals("=")) {
-            calcular();
-        } else {
-            if (!operador.isEmpty()) {
-                calcular();
+    // ações para botões da calculadora
+    public class BotaoClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String comando = e.getActionCommand();
+
+            switch (comando) {
+                case "C":
+                    resultado.setText("");
+                    operador = null;
+                    break;
+                case "=":
+                    if (operador != null) {
+                        num2 = Double.parseDouble(resultado.getText());
+                        double resultadoFinal = calcular(num1, num2, operador);
+                        resultado.setText(String.valueOf(resultadoFinal));
+                        operador = null;
+                    }
+                    break;
+                case "/":
+                case "*":
+                case "-":
+                case "+":
+                    num1 = Double.parseDouble(resultado.getText());
+                    operador = comando;
+                    resultado.setText("");
+                    break;
+                default:
+                    resultado.setText(resultado.getText() + comando);
             }
-            operando1 = Double.parseDouble(resultado.getText());
-            operador = comando;
-            resultado.setText("");
         }
-    }
 
-    private void calcular() {
-        double operando2 = Double.parseDouble(resultado.getText());
-        double resultadoFinal = 0;
 
-        switch (operador) {
-            case "+":
-                resultadoFinal = operando1 + operando2;
-                break;
-            case "-":
-                resultadoFinal = operando1 - operando2;
-                break;
-            case "*":
-                resultadoFinal = operando1 * operando2;
-                break;
-            case "/":
-                resultadoFinal = (operando2 != 0) ? operando1 / operando2 : Double.NaN;
-                break;
+        // metodo para as operacoes
+        public double calcular(double num1, double num2, String operador) {
+            switch (operador) {
+                case "+":
+                    return num1 + num2;
+                case "-":
+                    return num1 - num2;
+                case "*":
+                    return num1 * num2;
+                case "/":
+                    if (num2 != 0) {
+                        return num1 / num2;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Divisão por zero não é permitida.");
+                        return 0.0;
+                    }
+                default:
+                    return 0;
+            }
         }
-        resultado.setText(String.valueOf(resultadoFinal));
-        operador = "";
     }
 }
