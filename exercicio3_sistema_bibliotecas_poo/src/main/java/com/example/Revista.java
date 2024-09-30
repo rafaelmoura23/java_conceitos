@@ -7,6 +7,12 @@ public class Revista extends ItemBiblioteca {
     }
 
     @Override
+    public int getDuracaoEmprestimo() {
+        return 7; // emprestimo de 7 dias
+    }
+
+
+    @Override
     public void emprestar() {
         System.out.println("Empréstimo da revista: " + titulo + " por " + getDuracaoEmprestimo() + " dias.");
     }

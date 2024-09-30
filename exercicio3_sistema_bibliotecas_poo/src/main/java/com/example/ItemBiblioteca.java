@@ -11,5 +11,7 @@ public abstract class ItemBiblioteca {
     protected String titulo;
     protected String autor;
 
+    public abstract int getDuracaoEmprestimo();
+
     public abstract void emprestar();
 }
